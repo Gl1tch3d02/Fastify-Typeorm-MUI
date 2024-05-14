@@ -1,0 +1,39 @@
+version: "3.3"
+services:
+    postgres:
+        image: postgres:12
+        restart: always
+        environment:
+            POSTGRES_USER: $POSTGRES_USER
+            POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+            POSTGRES_DB: $POSTGRES_DB_NAME
+        ports:
+            - 127.0.0.1:5432:5432
+        volumes:
+            - $POSTGRES_DB_STORAGE_VOLUME:/var/lib/postgresql/data
+
+    template:
+        build: .
+        image: template:0.0.0
+        pull_policy: never
+        restart: always
+        depends_on:
+            - postgres
+        ports:
+            - $PORT:$PORT
+        environment:
+            PORT: $PORT
+            POSTGRES_HOST: $POSTGRES_HOST
+            POSTGRES_USER: $POSTGRES_USER
+            POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+            POSTGRES_DB_NAME: $POSTGRES_DB_NAME
+            AUTH_TYPE: $AUTH_TYPE
+            DOMAIN: $DOMAIN
+            DOMAIN_CONTROLLER: $DOMAIN_CONTROLLER
+            EDITOR_USERNAME_REGEX: $EDITOR_USERNAME_REGEX
+            STUDENT_USERNAME_REGEX: $STUDENT_USERNAME_REGEX
+        volumes:
+            - $SERVER_PUBLIC_FOLDER_VOLUME:/app/public
+            - ./ssl:/app/ssl
+            - ./favicon:/app/client/dist/logo
+            - ./server/assets:/app/server/assets

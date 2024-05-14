@@ -1,0 +1,38 @@
+{
+    "name": "template",
+    "version": "0.0.0",
+    "scripts": {
+        "format": "prettier --write .",
+        "start": "node server/build/",
+        "lint": "eslint */src/**/*.{js,jsx,ts,tsx,json}",
+        "lint:fix": "eslint --fix */src/**/*.{js,jsx,ts,tsx,json}",
+        "prepare": "husky install",
+        "server:dev": "cd server && npm run dev"
+    },
+    "workspaces": [
+        "./server/*"
+    ],
+    "author": "Gilad Turm",
+    "license": "ISC",
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^6.21.0",
+        "@typescript-eslint/parser": "^6.21.0",
+        "eslint": "^8.57.0",
+        "eslint-config-prettier": "^8.10.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.34.1",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-unused-imports": "^3.1.0",
+        "husky": "^8.0.3",
+        "lint-staged": "^13.3.0",
+        "prettier": "^3.2.5",
+        "typescript": "^5.2.2"
+    },
+    "lint-staged": {
+        "*/src/**/*.{js,jsx,ts,tsx}": [
+            "eslint --fix",
+            "prettier --write --ignore-unknown"
+        ],
+        "**/*.{json,md,yml,yaml}": "prettier --write --ignore-unknown"
+    }
+}

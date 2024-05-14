@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "lib": ["ESNext", "dom"],
+        "outDir": "build",
+        "removeComments": true,
+        "target": "ES6",
+        "baseUrl": "./",
+        "esModuleInterop": true,
+        "paths": {},
+        "sourceMap": true,
+        "sourceRoot": "/",
+        "alwaysStrict": true,
+        "allowUnreachableCode": false,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "noImplicitReturns": true,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "module": "Node16",
+        "resolveJsonModule": true
+    },
+    "include": ["./**/*.ts"],
+    "exclude": ["node_modules/**/*"],
+    "files": ["./src/types/environment.d.ts"]
+}
